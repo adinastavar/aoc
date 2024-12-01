@@ -1,3 +1,4 @@
+"""Adds logging to current year"""
 import logging
 
 log = logging.getLogger("AOC2023")

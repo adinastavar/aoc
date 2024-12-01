@@ -1,7 +1,8 @@
-import log
+"""The main module for AOC2024"""
 import os
 import argparse
 
+import log
 import day1
 # import day2
 # import day3
@@ -14,15 +15,17 @@ def make_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("day",  type=int, help="Advent day", choices=range(1, 26))
     parser.add_argument("part", type=int, help="Which part of the task should I run?", choices=[1, 2], default=1)
-    args = parser.parse_args()
-    return args
+    return parser.parse_args()
 
 if __name__ == "__main__":
     log.log.info("Hello, Adina")
 
     args = make_parser()
     inputs_dir = os.path.join(SCRIPT_DIR, "inputs")
-    files = [os.path.join(inputs_dir, f) for f in os.listdir(inputs_dir) if f"day{args.day}" in f if f.endswith(".txt")]
+    files = [os.path.join(inputs_dir, f) for f in os.listdir(inputs_dir) \
+             if f"day{args.day}" in f if f.endswith(".txt")]
+    # Filter samples, as input may not be supported
+    files = [f for f in files if "input" in os.path.basename(f) or f"sample{args.part}" in os.path.basename(f)]
 
     fn = None
 

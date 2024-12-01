@@ -1,8 +1,9 @@
-import log
-import re
 
+import re
 from dataclasses import dataclass
 from typing import List
+
+import log
 
 @dataclass
 class Part:
@@ -31,8 +32,8 @@ class SpecialChar:
 
 def main_first_part(filename : str):
     log.log.info("Executing part 1")
-    with open(filename, "rt") as input_data:
-        sum = 0
+    with open(filename, "rt", encoding='utf-8') as input_data:
+        output = 0
 
         parts         : List[Part]        = []
         # Grouping characters into lines for easier search
@@ -59,11 +60,11 @@ def main_first_part(filename : str):
 
         print(special_chars)
 
-        log.log.info(f"Day3 result is: {sum}")
+        log.log.info(f"Day3 result is: {output}")
 
 def main_second_part(filename : str):
     log.log.info("Executing part 2")
-    with open(filename, "rt") as input_data:
+    with open(filename, "rt", encoding='utf-8') as input_data:
         pass
 
 def main(filename : str, part: int):

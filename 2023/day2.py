@@ -1,8 +1,23 @@
-import log
+"""Code for day 2 of AOC2023"""
 from functools import reduce
 from operator import mul
+from typing import List
 
-def get_balls(line : str):
+import log
+
+def get_balls(line : str) -> List[str]:
+    """Returns the balls in a line
+
+    Parameters
+    ----------
+    line : str
+        Input line
+
+    Returns
+    -------
+    List[str]
+        Returns a list of balls from a game
+    """
     # extract the `Game:` prefix
     game = line.split(":")[-1]
     game = game.replace(";", ",")
@@ -10,16 +25,24 @@ def get_balls(line : str):
     game = [g.strip() for g in game]
     return game
 
+
 def main_first_part(filename : str):
+    """First part of the day
+
+    Parameters
+    ----------
+    filename : str
+        Input file
+    """
     log.log.info("Executing part 1")
 
-    with open(filename, "rt") as input_data:
+    with open(filename, "rt", encoding='utf-8') as input_data:
         MAX : dict = {
             'red'   : 12,
             'green' : 13,
             'blue'  : 14
         }
-        sum = 0
+        output = 0
 
         for idx, line in enumerate(input_data):
             is_valid = True
@@ -29,16 +52,23 @@ def main_first_part(filename : str):
                     is_valid = False
                     break
             if is_valid:
-                sum += (idx + 1)
+                output += (idx + 1)
 
-        log.log.info(f"Day2 result is: {sum}")
+        log.log.info("Day2 result is: %d", output)
 
 
 def main_second_part(filename : str):
+    """Second part of the day
+
+    Parameters
+    ----------
+    filename : str
+        Input file
+    """
     log.log.info("Executing part 2")
 
-    with open(filename, "rt") as input_data:
-        sum = 0
+    with open(filename, "rt", encoding='utf-8') as input_data:
+        output = 0
 
         for line in input_data:
             power = 1
@@ -54,12 +84,22 @@ def main_second_part(filename : str):
                     min_num_balls[key] = number
 
             power = reduce(mul, min_num_balls.values())
-            sum += power
+            output += power
 
-        log.log.info(f"Day2 result is: {sum}")
+        log.log.info("Day1 result is: %d", output)
+
 
 def main(filename : str, part: int):
-    log.log.info(f"Executing Day2 for {filename}")
+    """Main module for AOC2023 day 1
+
+    Parameters
+    ----------
+    filename : str
+        Input file
+    part : int
+        Part of day to run
+    """
+    log.log.info("Executing Day2 for %s", filename)
     match part:
         case 1:
             main_first_part(filename)

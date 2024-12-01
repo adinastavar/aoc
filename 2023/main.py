@@ -23,6 +23,8 @@ if __name__ == "__main__":
     args = make_parser()
     inputs_dir = os.path.join(SCRIPT_DIR, "inputs")
     files = [os.path.join(inputs_dir, f) for f in os.listdir(inputs_dir) if f"day{args.day}" in f if f.endswith(".txt")]
+    # Filter samples, as input may not be supported
+    files = [f for f in files if "input" in os.path.basename(f) or f"sample{args.part}" in os.path.basename(f)]
 
     fn = None
 
