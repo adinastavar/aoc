@@ -4,8 +4,8 @@ import argparse
 
 import log
 import day1
-# import day2
-# import day3
+import day2
+import day3
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -32,10 +32,10 @@ if __name__ == "__main__":
     match args.day:
         case 1:
             fn = day1.main
-        # case 2:
-        #     fn = day2.main
-        # case 3:
-        #     fn = day3.main
+        case 2:
+            fn = day2.main
+        case 3:
+            fn = day3.main
 
     for f in files:
         fn(f, args.part)
