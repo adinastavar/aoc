@@ -6,6 +6,7 @@ import log
 import day1
 import day2
 import day3
+import day4
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -36,6 +37,8 @@ if __name__ == "__main__":
             fn = day2.main
         case 3:
             fn = day3.main
+        case 4:
+            fn = day4.main
 
     for f in files:
         fn(f, args.part)
