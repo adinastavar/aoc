@@ -41,24 +41,32 @@ def main_first_part(filename : str):
 
         # Extract parts and special characters
         number_re       = re.compile(r"\d+")
-        special_char_re = re.compile(r"[^\d\.]")
+        special_char_re = re.compile(r"[^\d^\.]")
 
+        max_y = 0
+        max_x = 0
         # Check for parts and special chars
         for y, line in enumerate(input_data):
+            line = line.strip()
             special_chars[y] = []
             for m in number_re.finditer(line):
                 parts.append(Part(m.group(), m.start(), y))
             for m in special_char_re.finditer(line):
                 special_chars[y].append(SpecialChar(int(m.start()), y))
+            max_y += 1
+            max_x = len(line)
 
         for part in parts:
-            left_bound  = part.x - 1
-            right_bound = part.x + len(part.number)
-            top_bound = part.y - 1
-            lower_bound = part.y + 1
-            print(part)
-
-        print(special_chars)
+            left_bound  = max(part.x - 1, 0)
+            right_bound = min(part.x + len(part.number) + 2, max_x)
+            top_bound   = max(part.y - 1, 0)
+            lower_bound = min(part.y + 2, max_y)
+            for y in range(top_bound, lower_bound):
+                line_chars = special_chars[y]
+                for c in line_chars:
+                    if c.x in range(left_bound, right_bound):
+                        output += int(part.number)
+                        break
 
         log.log.info(f"Day3 result is: {output}")
 
