@@ -9,6 +9,8 @@ import day3
 import day4
 import day5
 import day6
+import day7
+import day8
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -45,6 +47,10 @@ if __name__ == "__main__":
             fn = day5.main
         case 6:
             fn = day6.main
+        case 7:
+            fn = day7.main
+        case 8:
+            fn = day8.main
 
     for f in files:
         fn(f, args.part)
