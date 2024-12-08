@@ -50,7 +50,11 @@ def create_script(directory : str, day : int, year : int):
     """
     with open(os.path.join(directory, f"day{day}.py"), "wt", encoding='utf-8') as f:
         f.write(f"\"\"\"Code for day {day} of AOC{year}\"\"\"\n\n")
+        f.write("import os\n")
+        f.write("import sys\n\n")
         f.write("import log\n\n")
+        f.write("sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), \"..\", \"..\")))\n")
+        f.write("import adventOfCode.utils\n\n")
         f.write("def main_first_part(filename : str):\n")
         f.write("    \"\"\"First part of the day\n")
         f.write("    Parameters\n")
