@@ -13,6 +13,7 @@ import day7
 import day8
 import day9
 import day11
+import day12
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -32,7 +33,9 @@ if __name__ == "__main__":
     files = [os.path.join(inputs_dir, f) for f in os.listdir(inputs_dir) \
              if f"day{args.day}" in f if f.endswith(".txt")]
     # Filter samples, as input may not be supported
-    files = [f for f in files if "input" in os.path.basename(f) or f"sample{args.part}" in os.path.basename(f)]
+    files = [f for f in files
+            #  if "input" in os.path.basename(f) or f"sample{args.part}" in os.path.basename(f)]
+             if f"sample{args.part}" in os.path.basename(f)]
 
     fn = None
 
@@ -59,6 +62,8 @@ if __name__ == "__main__":
             fn = day10.main
         case 11:
             fn = day11.main
+        case 12:
+            fn = day12.main
 
     for f in files:
         fn(f, args.part)
